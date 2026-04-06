@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M-Base｜八戸発のライバー・タレント事務所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   RESET & BASE
+============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --gray-100: #F5F5F7;
+  --gray-200: #E8E8ED;
+  --gray-600: #666666;
+  --gray-800: #1D1D1F;
+  --accent-start: #4F46E5;
+  --accent-end: #7C3AED;
+  --accent-light: #818CF8;
+  --font-jp: 'Noto Sans JP', sans-serif;
+  --font-en: 'DM Sans', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --radius: 14px;
+  --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-jp);
+  background: var(--white);
+  color: var(--gray-800);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============================================
+   NAVIGATION
+============================================ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.nav-logo {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+.nav-logo span {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-cta {
+  font-family: var(--font-jp);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  padding: 10px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+.nav-cta:hover { opacity: 0.85; transform: scale(1.03); }
+
+/* ============================================
+   ① FIRSTVIEW — 黒背景
+============================================ */
+#hero {
+  min-height: 100vh;
+  background: var(--black);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景グラデーション効果 */
+#hero::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(79,70,229,0.25) 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+  pointer-events: none;
+}
+#hero::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+  bottom: -80px;
+  right: 30%;
+  pointer-events: none;
+}
+
+.hero-content {
+  padding: 140px 64px 80px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-en);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent-light);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.hero-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent-light);
+}
+
+.hero-headline {
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+  color: white;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.hero-headline .accent-text {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subheadline {
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 48px;
+  letter-spacing: 0.02em;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  padding: 16px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.25s var(--transition), box-shadow 0.25s ease;
+  box-shadow: 0 8px 32px rgba(79,70,229,0.4);
+  letter-spacing: 0.05em;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(79,70,229,0.55);
+}
+.btn-primary::after {
+  content: '→';
+  transition: transform 0.2s ease;
+}
+.btn-primary:hover::after { transform: translateX(4px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 16px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s var(--transition);
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.35);
+  transform: translateY(-2px);
+}
+
+/* ヒーロービジュアル */
+.hero-visual {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-img-wrapper {
+  position: relative;
+  width: 80%;
+  max-width: 480px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 24px;
+  flex-shrink: 0;
+}
+
+.hero-img-wrapper img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 24px;
+  display: block;
+}
+
+.hero-img-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+/* シルエット装飾 */
+.hero-img-placeholder::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 80%;
+  background: linear-gradient(180deg, rgba(79,70,229,0.1) 0%, rgba(124,58,237,0.3) 100%);
+  clip-path: polygon(20% 0%, 80% 0%, 95% 100%, 5% 100%);
+}
+.hero-img-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(129,140,248,0.2) 0%, transparent 70%);
+}
+
+.hero-img-caption {
+  position: relative;
+  z-index: 2;
+  padding: 28px;
+  width: 100%;
+}
+.hero-img-caption p {
+  font-family: var(--font-jp);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+}
+.hero-img-caption strong {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 1.1rem;
+  color: white;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.hero-badge {
+  position: absolute;
+  top: 40px;
+  right: -16px;
+  background: white;
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-badge-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.hero-badge-text {
+  line-height: 1.3;
+}
+.hero-badge-text small {
+  font-size: 0.68rem;
+  color: var(--gray-600);
+  font-family: var(--font-en);
+  letter-spacing: 0.05em;
+  display: block;
+}
+.hero-badge-text strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  font-family: var(--font-jp);
+}
+
+.hero-stat {
+  position: absolute;
+  bottom: 80px;
+  left: -32px;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 16px 48px rgba(79,70,229,0.4);
+}
+.hero-stat strong {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+.hero-stat span {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.08em;
+  font-family: var(--font-jp);
+}
+
+/* scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.72rem;
+  font-family: var(--font-en);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-light);
+  animation: scrollAnim 2s ease-in-out infinite;
+}
+@keyframes scrollAnim {
+  0% { left: -100%; }
+  50% { left: 0; }
+  100% { left: 100%; }
+}
+
+/* ============================================
+   SECTION COMMONS
+============================================ */
+section { padding: 120px 0; }
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-en);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent-start);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--accent-start);
+}
+
+.section-title {
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--gray-800);
+  margin-bottom: 20px;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--gray-600);
+  line-height: 1.9;
+  font-weight: 300;
+  max-width: 560px;
+}
+
+/* ============================================
+   ② 共感セクション — 白背景
+============================================ */
+#empathy {
+  background: var(--white);
+  padding: 100px 0;
+}
+
+.empathy-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.empathy-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.empathy-quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--gray-200);
+  transition: background 0.2s ease;
+}
+.empathy-quote:first-child { border-top: 1px solid var(--gray-200); }
+
+.quote-num {
+  font-family: var(--font-en);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-start);
+  letter-spacing: 0.1em;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--gray-800);
+  line-height: 1.6;
+}
+.quote-text small {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--gray-600);
+  margin-top: 6px;
+}
+
+.empathy-message {
+  padding-left: 48px;
+  border-left: 3px solid;
+  border-image: linear-gradient(180deg, var(--accent-start), var(--accent-end)) 1;
+}
+
+.empathy-message blockquote {
+  font-family: var(--font-jp);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--gray-800);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.empathy-message p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+/* ============================================
+   ③ M-Baseとは — 白背景
+============================================ */
+#about {
+  background: var(--gray-100);
+  padding: 120px 0;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.about-header .section-label { justify-content: center; }
+.about-header .section-desc { margin: 0 auto; text-align: center; max-width: 560px; }
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.about-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 44px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s var(--transition), box-shadow 0.3s ease;
+}
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.08);
+}
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.about-card:hover::before { opacity: 1; }
+
+.card-icon-wrap {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(124,58,237,0.1));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.about-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.about-card p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 1.85;
+  font-weight: 300;
+}
+
+/* ============================================
+   ④ 実績 — 白背景
+============================================ */
+#achievement {
+  background: var(--black);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+#achievement::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(79,70,229,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 50%, rgba(124,58,237,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.achievement-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.achievement-header .section-label {
+  justify-content: center;
+  color: var(--accent-light);
+}
+.achievement-header .section-label::before { background: var(--accent-light); }
+.achievement-header .section-title { color: white; }
+.achievement-header .section-desc { color: rgba(255,255,255,0.5); margin: 0 auto; text-align: center; }
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.achievement-item {
+  background: rgba(255,255,255,0.03);
+  padding: 52px 36px;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.achievement-item:hover { background: rgba(255,255,255,0.07); }
+
+.achievement-num {
+  font-family: var(--font-en);
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, white, var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.achievement-label {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+.achievement-label strong {
+  display: block;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+/* ============================================
+   ⑤ 仕組み — 白背景
+============================================ */
+#mechanism {
+  background: var(--white);
+  padding: 120px 0;
+}
+
+.mechanism-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.mechanism-header .section-label { justify-content: center; }
+.mechanism-header .section-desc { margin: 0 auto; text-align: center; }
+
+.mechanism-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--gray-200);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.mechanism-item {
+  padding: 60px 48px;
+  border-right: 1px solid var(--gray-200);
+  position: relative;
+  transition: background 0.3s ease;
+}
+.mechanism-item:last-child { border-right: none; }
+.mechanism-item:hover { background: var(--gray-100); }
+
+.mechanism-num {
+  font-family: var(--font-en);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gray-200);
+  margin-bottom: 28px;
+  display: block;
+  letter-spacing: -0.05em;
+}
+
+.mechanism-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.mechanism-item h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.mechanism-item .mechanism-sub {
+  font-family: var(--font-en);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent-start);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.mechanism-item p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+/* ============================================
+   ⑥ メリット — グレー背景
+============================================ */
+#benefits {
+  background: var(--gray-100);
+  padding: 120px 0;
+}
+
+.benefits-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.benefits-header .section-label { justify-content: center; }
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.benefit-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px 44px;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  transition: transform 0.3s var(--transition), box-shadow 0.3s ease;
+}
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.07);
+}
+
+.benefit-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(79,70,229,0.3);
+}
+
+.benefit-body h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.benefit-body p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.85;
+  font-weight: 300;
+}
+
+/* ============================================
+   ⑦ ストーリー — エモセクション
+============================================ */
+#story {
+  background: var(--black);
+  padding: 140px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#story::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(79,70,229,0.18) 0%, transparent 70%);
+}
+
+.story-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.story-eyebrow {
+  font-family: var(--font-en);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.story-eyebrow::before,
+.story-eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background: rgba(129,140,248,0.4);
+}
+
+.story-headline {
+  font-family: var(--font-jp);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+
+.story-headline .grad {
+  background: linear-gradient(135deg, var(--accent-light), #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.story-body {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 2.1;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin-bottom: 56px;
+}
+
+.story-sig {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   ⑧ CTA — 白背景
+============================================ */
+#cta {
+  background: var(--white);
+  padding: 140px 0;
+  text-align: center;
+}
+
+.cta-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.cta-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(124,58,237,0.1));
+  color: var(--accent-start);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 8px 20px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(79,70,229,0.2);
+}
+
+#cta .section-title {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+}
+
+.cta-note {
+  font-size: 1.05rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+.cta-note strong {
+  color: var(--gray-800);
+  font-weight: 700;
+}
+
+.cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.btn-primary-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  background: var(--black);
+  padding: 18px 44px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.25s var(--transition), box-shadow 0.25s ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  letter-spacing: 0.05em;
+}
+.btn-primary-dark:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+}
+
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  background: #06C755;
+  padding: 18px 44px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.25s var(--transition), box-shadow 0.25s ease;
+  box-shadow: 0 8px 32px rgba(6,199,85,0.3);
+  letter-spacing: 0.05em;
+}
+.btn-line:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(6,199,85,0.4);
+}
+
+.cta-disclaimer {
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.3);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+footer {
+  background: var(--gray-800);
+  padding: 60px 0;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--font-en);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+.footer-logo span {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.1em;
+  margin-bottom: 36px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.8); }
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   RESPONSIVE — スマホ対応
+============================================ */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  
+  #hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  
+  .hero-content {
+    padding: 120px 28px 60px;
+    order: 1;
+  }
+  
+  .hero-visual {
+    height: 60vw;
+    min-height: 280px;
+    order: 2;
+    padding: 0 28px 60px;
+  }
+  
+  .hero-img-wrapper {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 16/10;
+  }
+  
+  .hero-badge { right: 8px; top: auto; bottom: 80px; }
+  .hero-stat { left: 8px; bottom: 80px; }
+  
+  .scroll-indicator { left: 28px; bottom: 28px; }
+  
+  .empathy-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .empathy-message {
+    padding-left: 24px;
+    order: -1;
+  }
+  
+  .about-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .achievement-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .mechanism-grid {
+    grid-template-columns: 1fr;
+    border: 1px solid var(--gray-200);
+  }
+  .mechanism-item {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 40px 32px;
+  }
+  .mechanism-item:last-child { border-bottom: none; }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .container { padding: 0 24px; }
+  section { padding: 80px 0; }
+  
+  #story, #cta { padding: 80px 0; }
+  #achievement { padding: 80px 0; }
+  .story-inner, .cta-inner { padding: 0 24px; }
+}
+
+@media (max-width: 500px) {
+  .hero-headline { font-size: 2.2rem; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-secondary { text-align: center; justify-content: center; }
+  .achievement-grid { grid-template-columns: 1fr; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .achievement-item { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVIGATION
+============================================ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">M<span>-Base</span></a>
+  <a href="#cta" class="nav-cta">応募する</a>
+</nav>
+
+
+<!-- ============================================
+     ① FIRSTVIEW
+============================================ -->
+<section id="hero">
+  <!-- 左：コピー -->
+  <div class="hero-content">
+    <div class="hero-label">Aomori × Live Commerce × SNS</div>
+
+    <h1 class="hero-headline">
+      八戸から、<br>
+      <span class="accent-text">届く。</span>
+    </h1>
+
+    <p class="hero-subheadline">
+      地方だから無理？<br>
+      それ、やり方の問題。<br>
+      M-Baseで、あなたの可能性を解放しよう。
+    </p>
+
+    <div class="hero-btns">
+      <a href="https://forms.gle/wb2JENbA4XyJT7WS6" target="_blank" rel="noopener" class="btn-primary">応募する</a>
+    </div>
+  </div>
+
+  <!-- 右：ビジュアル -->
+  <div class="hero-visual">
+    <div class="hero-img-wrapper">
+      <img src="IMG_5130.JPG" alt="M-Base Member">
+
+      <div class="hero-badge">
+        <div class="hero-badge-icon">🏆</div>
+        <div class="hero-badge-text">
+          <small>Achievement</small>
+          <strong>S帯ランク達成</strong>
+        </div>
+      </div>
+
+      <div class="hero-stat">
+        <strong>3→10x</strong>
+        <span>収益スケール実績</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+
+<!-- ============================================
+     ② 共感セクション
+============================================ -->
+<section id="empathy">
+  <div class="container">
+    <div class="empathy-inner">
+
+      <div class="empathy-quotes">
+        <div class="empathy-quote reveal">
+          <span class="quote-num">01</span>
+          <div class="quote-text">
+            やってみたいけど、自信がない
+            <small>スキルがない自分には難しそう…と感じていませんか？</small>
+          </div>
+        </div>
+        <div class="empathy-quote reveal reveal-delay-1">
+          <span class="quote-num">02</span>
+          <div class="quote-text">
+            地方だから難しいと思っている
+            <small>東京じゃないから無理、と諦めていませんか？</small>
+          </div>
+        </div>
+        <div class="empathy-quote reveal reveal-delay-2">
+          <span class="quote-num">03</span>
+          <div class="quote-text">
+            何から始めればいいかわからない
+            <small>情報が多すぎて、一歩が踏み出せない状態では？</small>
+          </div>
+        </div>
+        <div class="empathy-quote reveal reveal-delay-3">
+          <span class="quote-num">04</span>
+          <div class="quote-text">
+            ひとりでは続けられる気がしない
+            <small>孤独にやり続けるモチベーションが持てない…</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="empathy-message reveal reveal-delay-2">
+        <blockquote>
+          その悩み、<br>
+          全部解決できます。
+        </blockquote>
+        <p>
+          M-Baseは、地方在住のライバー・タレントが<strong>正しい戦略</strong>で活動できるよう、<strong>配信・SNS・リアルの三軸</strong>からサポートする事務所です。<br><br>
+          場所は関係ない。時代は、すでに変わっています。
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     ③ M-Baseとは
+============================================ -->
+<section id="about">
+  <div class="container">
+    <div class="about-header reveal">
+      <div class="section-label">What is M-Base</div>
+      <h2 class="section-title">配信 × SNS × リアルで、<br>地方から全国へ。</h2>
+      <p class="section-desc">3つの軸を同時に動かすことで、どこにいても活躍できるライバー・タレントを育成します。</p>
+    </div>
+
+    <div class="about-cards">
+      <div class="about-card reveal reveal-delay-1">
+        <div class="card-icon-wrap">📱</div>
+        <h3>ライブ配信</h3>
+        <p>主要プラットフォームでの収益化戦略をゼロからサポート。配信スタイルの確立から収益の最大化まで伴走します。</p>
+      </div>
+      <div class="about-card reveal reveal-delay-2">
+        <div class="card-icon-wrap">✨</div>
+        <h3>SNS運用</h3>
+        <p>TikTok・Instagram・X（旧Twitter）での拡散設計。あなたの魅力を言語化し、フォロワーを自然に増やす仕組みを作ります。</p>
+      </div>
+      <div class="about-card reveal reveal-delay-3">
+        <div class="card-icon-wrap">🎤</div>
+        <h3>リアル活動</h3>
+        <p>地域イベントや企業コラボ、メディア出演など。オフラインでのファン化を通じて、唯一無二の存在感を確立します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================================
+     ⑤ 仕組み
+============================================ -->
+<section id="mechanism">
+  <div class="container">
+    <div class="mechanism-header reveal">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">3つの柱で、<br>収益とファンを同時に作る。</h2>
+      <p class="section-desc">M-Baseの仕組みは、配信・SNS・リアルを有機的に連動させることで、爆発的な成長を実現します。</p>
+    </div>
+
+    <div class="mechanism-grid">
+      <div class="mechanism-item reveal">
+        <span class="mechanism-num">01</span>
+        <span class="mechanism-icon">📡</span>
+        <span class="mechanism-sub">Revenue</span>
+        <h3>配信（収益化）</h3>
+        <p>ライブ配信での投げ銭・サブスク収益。アーカイブを活用した長期的な収益モデルを設計します。</p>
+      </div>
+      <div class="mechanism-item reveal reveal-delay-1">
+        <span class="mechanism-num">02</span>
+        <span class="mechanism-icon">🚀</span>
+        <span class="mechanism-sub">Reach</span>
+        <h3>SNS（拡散）</h3>
+        <p>短尺動画やリール投稿で認知を拡大。ファネルを設計し、フォロワーを確実にリスナーへ転換します。</p>
+      </div>
+      <div class="mechanism-item reveal reveal-delay-2">
+        <span class="mechanism-num">03</span>
+        <span class="mechanism-icon">🤝</span>
+        <span class="mechanism-sub">Loyalty</span>
+        <h3>リアル（ファン化）</h3>
+        <p>対面イベントや地域コラボで深いファンを獲得。応援してくれるコアファンを育てることで、安定した収益基盤を作ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     ⑥ メリット
+============================================ -->
+<section id="benefits">
+  <div class="container">
+    <div class="benefits-header reveal">
+      <div class="section-label">Benefits</div>
+      <h2 class="section-title">M-Baseに入ると<br>できること。</h2>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">🎯</div>
+        <div class="benefit-body">
+          <h3>初期サポートが充実</h3>
+          <p>配信スタート時に必要な戦略設計・プロフィール最適化・スケジューリングまで、ゼロからハンズオンで支援します。何もわからなくても大丈夫。</p>
+        </div>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon">🎬</div>
+        <div class="benefit-body">
+          <h3>配信環境の整備サポート</h3>
+          <p>機材選びからセットアップまでアドバイス。コストを最小限に抑えながらプロ品質の配信環境を実現するノウハウを提供します。</p>
+        </div>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon">💼</div>
+        <div class="benefit-body">
+          <h3>案件・収益の導線を確保</h3>
+          <p>企業コラボ・PR案件・イベント出演など、個人では難しい案件を事務所ルートで獲得。活動を収益に直結させる仕組みがあります。</p>
+        </div>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon">🎪</div>
+        <div class="benefit-body">
+          <h3>イベント出演の機会</h3>
+          <p>地域イベント・フェス・企業イベントへの出演機会を定期的に提供。リアルでのファンづくりと認知拡大を加速します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     ⑦ ストーリー
+============================================ -->
+<section id="story">
+  <div class="story-inner">
+    <div class="story-eyebrow reveal">Our Story</div>
+
+    <h2 class="story-headline reveal reveal-delay-1">
+      地方でも届く。<br>
+      <span class="grad">それを証明したい。</span>
+    </h2>
+
+    <p class="story-body reveal reveal-delay-2">
+      東京じゃなくてもいい。<br>
+      有名な学校を出ていなくてもいい。<br>
+      フォロワーがゼロでも、経験がなくてもいい。<br><br>
+      必要なのは、「届けたい」という気持ちと、<br>
+      正しい戦略だけ。<br><br>
+      M-Baseは、青森・八戸という地から、<br>
+      全国に通用するライバーを育てることで、<br>
+      「地方では無理」という常識を変えたい。<br>
+      それが、私たちの使命です。
+    </p>
+
+    <div class="story-sig reveal reveal-delay-3">— M-Base Founder</div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     ⑧ CTA
+============================================ -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-tag reveal">📢 第1期メンバー募集中（3〜5名限定）</div>
+
+    <h2 class="section-title reveal reveal-delay-1">
+      まずは話を<br>
+      聞くだけでもOK。
+    </h2>
+
+    <p class="cta-note reveal reveal-delay-2">
+      今すぐ活動を始める必要はありません。<br>
+      <strong>「どんな活動ができるのか」「自分に向いているのか」</strong>、<br>
+      まず気軽に話してみてください。<br>
+      第1期メンバーは少人数のため、<strong>丁寧に伴走</strong>できます。
+    </p>
+
+    <div class="cta-btns reveal reveal-delay-3">
+      <a href="https://forms.gle/wb2JENbA4XyJT7WS6" target="_blank" rel="noopener" class="btn-primary-dark">📝 応募フォームへ</a>
+    </div>
+
+    <p class="cta-disclaimer reveal reveal-delay-4">
+      ※ 面談後に入会を強制することは一切ありません。お気軽にご相談ください。
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================
+     FOOTER
+============================================ -->
+<footer>
+  <div class="footer-logo">M<span>-Base</span></div>
+  <p class="footer-tagline">八戸発、次世代ライバー・タレント事務所</p>
+  <div class="footer-links">
+    <a href="/cdn-cgi/l/email-protection#d8b1b6beb798b5b9aab1b6b9f5b7bebeb1bbb1b9b4f6b2a8">お問い合わせ</a>
+    <a href="https://x.com/marina01base18?s=21&t=mA9GMgzJ8sc3dme7douG2A" target="_blank" rel="noopener">X (Twitter)</a>
+    <a href="https://forms.gle/wb2JENbA4XyJT7WS6" target="_blank" rel="noopener">応募フォーム</a>
+  </div>
+  <p class="footer-copy">© 2024 M-Base. All rights reserved.</p>
+</footer>
+
+
+<!-- ============================================
+     JAVASCRIPT
+============================================ -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* --- Nav scroll effect --- */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* --- Reveal on scroll --- */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+/* --- Hero headline typing animation --- */
+const headline = document.querySelector('.hero-headline');
+if (headline) {
+  headline.style.opacity = '0';
+  headline.style.transform = 'translateY(24px)';
+  headline.style.transition = 'opacity 1s ease 0.3s, transform 1s ease 0.3s';
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      headline.style.opacity = '1';
+      headline.style.transform = 'translateY(0)';
+    });
+  });
+}
+
+const heroLabel = document.querySelector('.hero-label');
+if (heroLabel) {
+  heroLabel.style.opacity = '0';
+  heroLabel.style.transform = 'translateY(12px)';
+  heroLabel.style.transition = 'opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    heroLabel.style.opacity = '1';
+    heroLabel.style.transform = 'translateY(0)';
+  }));
+}
+
+const heroSub = document.querySelector('.hero-subheadline');
+if (heroSub) {
+  heroSub.style.opacity = '0';
+  heroSub.style.transform = 'translateY(16px)';
+  heroSub.style.transition = 'opacity 0.9s ease 0.6s, transform 0.9s ease 0.6s';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    heroSub.style.opacity = '1';
+    heroSub.style.transform = 'translateY(0)';
+  }));
+}
+
+const heroBtns = document.querySelector('.hero-btns');
+if (heroBtns) {
+  heroBtns.style.opacity = '0';
+  heroBtns.style.transform = 'translateY(16px)';
+  heroBtns.style.transition = 'opacity 0.9s ease 0.9s, transform 0.9s ease 0.9s';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    heroBtns.style.opacity = '1';
+    heroBtns.style.transform = 'translateY(0)';
+  }));
+}
+
+/* --- Smooth scroll for anchor links --- */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', e => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+ 
