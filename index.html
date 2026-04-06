@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M-Base｜八戸発ライバー事務所 — 真理奈プロデュース</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #ffffff;
+  color: #1D1D1F;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px);
+}
+.nav-logo {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+.nav-logo em { font-style: normal; color: #818CF8; }
+
+/* [変更①] NAVのCTAボタンを大きく・目立つ色に */
+.nav-cta {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  padding: 12px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(79,70,229,0.4);
+  white-space: nowrap;
+}
+.nav-cta:hover { opacity: 0.88; transform: scale(1.04); }
+
+/* ===== HERO ===== */
+#hero {
+  background: #000000;
+  min-height: 100vh;
+  padding-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow-left {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(79,70,229,0.25) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  pointer-events: none;
+}
+.hero-glow-right {
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+  bottom: -80px; right: 20%;
+  pointer-events: none;
+}
+.hero-left {
+  flex: 1 1 420px;
+  padding: 60px 60px 80px 80px;
+  position: relative;
+  z-index: 2;
+}
+.hero-right {
+  flex: 1 1 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 60px 80px 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* [変更①] 主体を示すプロデューサー表記 */
+.hero-producer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+.hero-producer span {
+  color: #818CF8;
+  font-weight: 700;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #818CF8;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: #818CF8;
+}
+.hero-h1 {
+  font-weight: 900;
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  color: #ffffff;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.hero-h1 .grad {
+  background: linear-gradient(135deg, #4F46E5, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  line-height: 2;
+  margin-bottom: 48px;
+}
+
+/* [変更③] CTAボタンを大きく・サブテキスト追加 */
+.hero-cta-wrap { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.btn-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  padding: 18px 44px;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 8px 32px rgba(79,70,229,0.45);
+  transition: transform 0.25s, box-shadow 0.25s;
+  letter-spacing: 0.04em;
+}
+.btn-apply:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(79,70,229,0.6);
+}
+.btn-apply-sub {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.38);
+  letter-spacing: 0.05em;
+  padding-left: 4px;
+}
+
+/* hero photo */
+.hero-photo-wrap {
+  position: relative;
+  width: 400px;
+  max-width: 90%;
+  aspect-ratio: 3/4;
+  border-radius: 24px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  overflow: visible;
+}
+.hero-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  border-radius: 24px;
+}
+.hero-badge {
+  position: absolute;
+  top: 24px; right: -20px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  z-index: 3;
+}
+.hero-badge-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.hero-badge small { display: block; font-size: 0.65rem; color: #999; }
+.hero-badge strong { font-size: 0.85rem; color: #1D1D1F; font-weight: 700; }
+.hero-stat {
+  position: absolute;
+  bottom: 32px; left: -20px;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  border-radius: 14px;
+  padding: 18px 22px;
+  box-shadow: 0 12px 40px rgba(79,70,229,0.4);
+  z-index: 3;
+}
+.hero-stat strong {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+.hero-stat span {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.06em;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 32px; left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.scroll-hint-line {
+  width: 36px; height: 1px;
+  background: rgba(255,255,255,0.15);
+  position: relative; overflow: hidden;
+}
+.scroll-hint-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: #818CF8;
+  animation: slideLine 2s ease-in-out infinite;
+}
+@keyframes slideLine {
+  0% { left: -100%; } 50% { left: 0; } 100% { left: 100%; }
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+
+/* ===== SECTION BASICS ===== */
+/* [変更⑦] セクション間の余白を広く */
+section { padding: 140px 0; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.sec-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #4F46E5;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.sec-label::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: #4F46E5;
+}
+.sec-title {
+  font-weight: 900;
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  color: #1D1D1F;
+  margin-bottom: 16px;
+}
+.sec-desc {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+/* ===== EMPATHY ===== */
+#empathy { background: #ffffff; padding: 120px 0; }
+.empathy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.empathy-list { display: flex; flex-direction: column; }
+.empathy-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 28px 0;
+  border-bottom: 1px solid #E8E8ED;
+}
+.empathy-item:first-child { border-top: 1px solid #E8E8ED; }
+.empathy-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #4F46E5;
+  letter-spacing: 0.1em;
+  padding-top: 3px;
+  flex-shrink: 0;
+}
+.empathy-text { font-size: 1.05rem; font-weight: 500; color: #1D1D1F; line-height: 1.6; }
+.empathy-text small { display: block; font-size: 0.82rem; font-weight: 300; color: #666; margin-top: 4px; }
+.empathy-msg {
+  padding-left: 40px;
+  border-left: 3px solid #4F46E5;
+}
+.empathy-msg blockquote {
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 700;
+  color: #1D1D1F;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.empathy-msg p { font-size: 0.92rem; color: #666; line-height: 1.9; font-weight: 300; }
+
+/* ===== ABOUT ===== */
+#about { background: #F5F5F7; }
+.about-header { text-align: center; margin-bottom: 72px; }
+.about-header .sec-label { justify-content: center; }
+.about-header .sec-desc { max-width: 520px; margin: 0 auto; text-align: center; }
+.about-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.about-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 40px 32px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.about-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(0,0,0,0.08); }
+.about-card-icon {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(124,58,237,0.1));
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+.about-card h3 { font-size: 1.2rem; font-weight: 700; color: #1D1D1F; margin-bottom: 10px; }
+.about-card p { font-size: 0.88rem; color: #666; line-height: 1.85; font-weight: 300; }
+
+/* [変更②] 実績セクション — 数字ではなく実績の質で信頼を出す */
+#achievement { background: #000000; padding: 120px 0; position: relative; overflow: hidden; }
+#achievement::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(79,70,229,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(124,58,237,0.1) 0%, transparent 60%);
+}
+.ach-header { text-align: center; margin-bottom: 72px; position: relative; z-index: 1; }
+.ach-header .sec-label { justify-content: center; color: #818CF8; }
+.ach-header .sec-label::before { background: #818CF8; }
+.ach-header .sec-title { color: #ffffff; }
+.ach-header .sec-desc { color: rgba(255,255,255,0.45); max-width: 480px; margin: 0 auto; text-align: center; }
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative; z-index: 1;
+}
+.ach-item {
+  background: rgba(255,255,255,0.03);
+  padding: 52px 40px;
+  text-align: center;
+  transition: background 0.3s;
+}
+.ach-item:hover { background: rgba(255,255,255,0.07); }
+.ach-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  display: block;
+}
+.ach-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.ach-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ===== MECHANISM ===== */
+#mechanism { background: #ffffff; }
+.mech-header { text-align: center; margin-bottom: 72px; }
+.mech-header .sec-label { justify-content: center; }
+.mech-header .sec-desc { max-width: 520px; margin: 0 auto; text-align: center; }
+.mech-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border: 1px solid #E8E8ED;
+  border-radius: 22px;
+  overflow: hidden;
+}
+.mech-item {
+  padding: 52px 44px;
+  border-right: 1px solid #E8E8ED;
+  transition: background 0.2s;
+}
+.mech-item:last-child { border-right: none; }
+.mech-item:hover { background: #F5F5F7; }
+.mech-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #E8E8ED;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.mech-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+.mech-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #4F46E5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+.mech-item h3 { font-size: 1.2rem; font-weight: 700; color: #1D1D1F; margin-bottom: 10px; }
+.mech-item p { font-size: 0.87rem; color: #666; line-height: 1.85; font-weight: 300; }
+
+/* ===== BENEFITS ===== */
+#benefits { background: #F5F5F7; }
+.ben-header { text-align: center; margin-bottom: 64px; }
+.ben-header .sec-label { justify-content: center; }
+.ben-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.ben-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px 40px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.ben-card:hover { transform: translateY(-4px); box-shadow: 0 16px 44px rgba(0,0,0,0.07); }
+.ben-icon {
+  width: 50px; height: 50px;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 6px 20px rgba(79,70,229,0.28);
+}
+.ben-body h3 { font-size: 1rem; font-weight: 700; color: #1D1D1F; margin-bottom: 7px; }
+.ben-body p { font-size: 0.87rem; color: #666; line-height: 1.85; font-weight: 300; }
+
+/* [変更④] 安心セクション — 未経験OK・ノルマなし */
+#reassure { background: #ffffff; padding: 120px 0; }
+.reassure-header { text-align: center; margin-bottom: 64px; }
+.reassure-header .sec-label { justify-content: center; }
+.reassure-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.reassure-card {
+  border: 1.5px solid #E8E8ED;
+  border-radius: 20px;
+  padding: 44px 32px;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.reassure-card:hover {
+  border-color: #818CF8;
+  box-shadow: 0 12px 40px rgba(79,70,229,0.08);
+}
+.reassure-card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  display: block;
+}
+.reassure-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.reassure-card p { font-size: 0.87rem; color: #666; line-height: 1.85; font-weight: 300; }
+
+/* ===== STORY ===== */
+#story {
+  background: #000000;
+  padding: 160px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#story::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(79,70,229,0.18) 0%, transparent 70%);
+}
+.story-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 0 48px; }
+.story-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #818CF8;
+  margin-bottom: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.story-eyebrow::before, .story-eyebrow::after {
+  content: '';
+  display: block;
+  width: 44px; height: 1px;
+  background: rgba(129,140,248,0.35);
+}
+.story-h2 {
+  font-weight: 900;
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  color: #ffffff;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  margin-bottom: 36px;
+}
+.story-h2 .grad {
+  background: linear-gradient(135deg, #818CF8, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.story-body {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 2.2;
+  font-weight: 300;
+  margin-bottom: 48px;
+}
+.story-sig {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.05em;
+}
+
+/* [変更③⑦] CTA — ボタンを大きく・目立つ・安心テキスト追加 */
+#cta { background: #ffffff; padding: 160px 0; text-align: center; }
+.cta-inner { max-width: 660px; margin: 0 auto; padding: 0 48px; }
+.cta-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(124,58,237,0.1));
+  color: #4F46E5;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 8px 20px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(79,70,229,0.2);
+}
+#cta .sec-title { text-align: center; font-size: clamp(1.9rem, 3vw, 2.6rem); margin-bottom: 14px; }
+.cta-sub-heading {
+  font-size: 1rem;
+  color: #4F46E5;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+.cta-note { font-size: 1rem; color: #666; line-height: 1.9; margin-bottom: 48px; font-weight: 300; }
+.cta-note strong { color: #1D1D1F; font-weight: 700; }
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+
+/* [変更③] メインCTAボタンを大きく・グラデーション */
+.btn-cta-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  padding: 20px 52px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 8px 36px rgba(79,70,229,0.45);
+  letter-spacing: 0.04em;
+}
+.btn-cta-main:hover { transform: translateY(-3px); box-shadow: 0 20px 56px rgba(79,70,229,0.6); }
+
+.cta-time { font-size: 0.78rem; color: rgba(0,0,0,0.3); margin-bottom: 32px; }
+
+/* 安心ポイント */
+.cta-trust {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.cta-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #666;
+  font-weight: 500;
+}
+.cta-trust-item::before {
+  content: '✓';
+  color: #4F46E5;
+  font-weight: 700;
+}
+.cta-disclaimer { font-size: 0.76rem; color: rgba(0,0,0,0.28); }
+
+/* ===== FOOTER ===== */
+footer { background: #1D1D1F; padding: 64px 0; text-align: center; }
+.footer-logo {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.footer-logo em { font-style: normal; color: #818CF8; }
+.footer-producer { font-size: 0.78rem; color: rgba(255,255,255,0.25); margin-bottom: 12px; letter-spacing: 0.1em; }
+.footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; margin-bottom: 36px; }
+.footer-links { display: flex; gap: 28px; justify-content: center; margin-bottom: 36px; flex-wrap: wrap; }
+.footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.8); }
+.footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.18); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  nav { padding: 16px 20px; }
+  .container { padding: 0 24px; }
+  section { padding: 88px 0; }
+  #empathy { padding: 88px 0; }
+  #achievement, #reassure, #cta, #story { padding: 88px 0; }
+
+  #hero { flex-direction: column; }
+  .hero-left { padding: 110px 24px 40px; flex: none; width: 100%; }
+  .hero-right { padding: 0 24px 72px; flex: none; width: 100%; justify-content: center; }
+  .hero-cta-wrap { align-items: stretch; }
+  .btn-apply { justify-content: center; }
+
+  /* [変更⑦] スマホのバッジを内側に収める */
+  .hero-photo-wrap { width: 280px; }
+  .hero-badge { right: -8px; top: 16px; padding: 10px 12px; white-space: normal; max-width: 195px; }
+  .hero-badge-icon { width: 28px; height: 28px; font-size: 0.85rem; flex-shrink: 0; }
+  .hero-badge strong { font-size: 0.76rem; }
+  .hero-badge small { font-size: 0.6rem; }
+  .hero-stat { left: -8px; bottom: 16px; padding: 12px 16px; max-width: 190px; }
+  .hero-stat strong { font-size: 1rem; }
+  .hero-stat span { font-size: 0.62rem; white-space: normal; }
+
+  .scroll-hint { left: 24px; }
+  .empathy-grid { grid-template-columns: 1fr; gap: 48px; }
+  .empathy-msg { padding-left: 24px; }
+  .about-cards { grid-template-columns: 1fr; }
+  .ach-grid { grid-template-columns: 1fr; }
+  .ach-item { padding: 36px 28px; }
+  .mech-grid { grid-template-columns: 1fr; }
+  .mech-item { border-right: none; border-bottom: 1px solid #E8E8ED; padding: 36px 28px; }
+  .mech-item:last-child { border-bottom: none; }
+  .ben-grid { grid-template-columns: 1fr; }
+  .reassure-grid { grid-template-columns: 1fr; gap: 16px; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .btn-cta-main { width: 100%; justify-content: center; padding: 18px 32px; }
+  .cta-trust { gap: 16px; }
+  .story-inner, .cta-inner { padding: 0 24px; }
+}
+@media (max-width: 480px) {
+  .hero-h1 { font-size: 2.4rem; }
+  .hero-photo-wrap { width: 240px; }
+  .hero-badge { max-width: 170px; }
+  .hero-stat { max-width: 170px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">M<em>-Base</em></a>
+  <!-- [変更③] CTAのリンクを応募フォームに直接 -->
+  <a href="https://forms.gle/wb2JENbA4XyJT7WS6" target="_blank" rel="noopener" class="nav-cta">今すぐ応募する</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow-left"></div>
+  <div class="hero-glow-right"></div>
+
+  <div class="hero-left">
+    <!-- [変更①] プロデューサー表記を追加 -->
+    <div class="hero-producer">八戸発ライバー事務所 ／ <span>真理奈プロデュース</span></div>
+    <div class="hero-eyebrow">Aomori × Live Commerce × SNS</div>
+    <h1 class="hero-h1">
+      八戸から、<br>
+      <span class="grad">届く。</span>
+    </h1>
+    <!-- [変更⑥] コピーを少しエモ寄りに -->
+    <p class="hero-sub">
+      地方だから無理、なんてない。<br>
+      やり方次第で、どこからでも届く時代。<br>
+      M-Baseが、その「やり方」を一緒に作ります。
+    </p>
+    <!-- [変更③] CTA強化 -->
+    <div class="hero-cta-wrap">
+      <a href="https://forms.gle/wb2JENbA4XyJT7WS6" target="_blank" rel="noopener" class="btn-apply">今すぐ応募する（所要時間1分）</a>
+      <span class="btn-apply-sub">まずは話を聞くだけでもOK</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <img src="IMG_5130 2.jpg" alt="M-Base Member">
+      <div class="hero-badge">
+        <div class="hero-badge-icon">🏆</div>
+        <div>
+          <small>Achievement</small>
+          <strong>S帯累計滞在500日達成</strong>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <strong>POCO LAND</strong>
+        <span>2025 20Stars mkodern Crystal 14th</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-hint-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- 共感 -->
+<section id="empathy">
+  <div class="container">
+    <div class="empathy-grid">
+      <div class="empathy-list">
+        <div class="empathy-item reveal">
+          <span class="empathy-num">01</span>
+          <div class="empathy-text">
+            やってみたいけど、自信がない
+            <small>何もわからない自分には難しそう…と感じていませんか？</small>
+          </div>
+        </div>
+        <div class="empathy-item reveal d1">
+          <span class="empathy-num">02</span>
+          <div class="empathy-text">
+            地方だから難しいと思っている
+            <small>東京じゃないと活躍できない、と諦めていませんか？</small>
+          </div>
+        </div>
+        <div class="empathy-item reveal d2">
+          <span class="empathy-num">03</span>
+          <div class="empathy-text">
+            何から始めればいいかわからない
+            <small>情報が多すぎて、一歩が踏み出せない状態では？</small>
+          </div>
+        </div>
+        <div class="empathy-item reveal d3">
+          <span class="empathy-num">04</span>
+          <div class="empathy-text">
+            ひとりでは続けられる気がしない
+            <small>孤独にやり続けるモチベーションが持てない…</small>
+          </div>
+        </div>
+      </div>
+      <div class="empathy-msg reveal d2">
+        <!-- [変更⑥] エモ寄りに調整 -->
+        <blockquote>その気持ち、<br>ぜんぶわかります。</blockquote>
+        <p>M-Baseは、実際に地方から配信活動をしてきた真理奈がプロデュースする事務所です。<br><br>「地方でも届く」ことを自分自身で証明してきたからこそ、<strong>正直なサポート</strong>ができます。一緒に、やり方を見つけましょう。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-header reveal">
+      <!-- [変更①⑤] 主体と差別化を明確に -->
+      <div class="sec-label">What is M-Base</div>
+      <h2 class="sec-title">配信 × SNS × リアルで、<br>地方から全国へ。</h2>
+      <p class="sec-desc">真理奈プロデュースの八戸発ライバー事務所。「見せ方」から「届け方」まで、トータルでサポートします。</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card reveal d1">
+        <div class="about-card-icon">📱</div>
+        <h3>ライブ配信</h3>
+        <p>配信スタイルの確立から、継続的に活動できる仕組みづくりまでサポート。はじめてでも丁寧に伴走します。</p>
+      </div>
+      <div class="about-card reveal d2">
+        <div class="about-card-icon">✨</div>
+        <h3>SNS × 見せ方</h3>
+        <!-- [変更⑤] 「見せ方までサポート」を組み込む -->
+        <p>TikTok・Instagram・Xでの拡散設計。あなたの魅力の「見せ方」を一緒に考え、自然にフォロワーを増やします。</p>
+      </div>
+      <div class="about-card reveal d3">
+        <div class="about-card-icon">🎤</div>
+        <h3>リアル活動</h3>
+        <p>地域イベントや企業コラボへの参加機会を提供。オフラインでのファン化を通じて、地に足のついた活動を広げます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- [変更②] 実績セクション — 金額なし、質で信頼を出す -->
+<section id="achievement">
+  <div class="container">
+    <div class="ach-header reveal">
+      <div class="sec-label">Results</div>
+      <h2 class="sec-title" style="color:#ffffff;">数字より、実績の中身。</h2>
+      <p class="sec-desc">地方発でも、正しい活動の積み重ねでここまで来ました。</p>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-item reveal">
+        <span class="ach-icon">🏆</span>
+        <div class="ach-title">S帯ライバー在籍</div>
+        <div class="ach-desc">主要ライブ配信プラットフォームにて、最上位帯での活動実績あり</div>
+      </div>
+      <div class="ach-item reveal d1">
+        <span class="ach-icon">🎤</span>
+        <div class="ach-title">イベント出演経験あり</div>
+        <div class="ach-desc">地域イベント・企業主催イベントへの出演。リアルでのファン獲得を実践</div>
+      </div>
+      <div class="ach-item reveal d2">
+        <span class="ach-icon">📡</span>
+        <div class="ach-title">ライブ配信での実績</div>
+        <div class="ach-desc">継続的な配信活動と、SNSとの連動で認知を拡大してきた実績あり</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 仕組み -->
+<section id="mechanism">
+  <div class="container">
+    <div class="mech-header reveal">
+      <div class="sec-label">How it works</div>
+      <!-- [変更⑤] 差別化を明確に -->
+      <h2 class="sec-title">配信・SNS・リアルの<br>3つを連動させる。</h2>
+      <p class="sec-desc">それぞれが単独ではなく、お互いを高め合う仕組みで活動の幅を広げます。</p>
+    </div>
+    <div class="mech-grid">
+      <div class="mech-item reveal">
+        <div class="mech-num">01</div>
+        <span class="mech-icon">📡</span>
+        <span class="mech-sub">Live</span>
+        <h3>配信（活動の軸）</h3>
+        <p>ライブ配信を活動の中心に。継続できる配信スタイルと、視聴者との関係づくりを丁寧にサポートします。</p>
+      </div>
+      <div class="mech-item reveal d1">
+        <div class="mech-num">02</div>
+        <span class="mech-icon">🚀</span>
+        <span class="mech-sub">SNS</span>
+        <h3>SNS（認知の拡大）</h3>
+        <p>短尺動画やリール投稿で、配信外でも認知を広げます。あなたらしい「見せ方」を一緒に設計します。</p>
+      </div>
+      <div class="mech-item reveal d2">
+        <div class="mech-num">03</div>
+        <span class="mech-icon">🤝</span>
+        <span class="mech-sub">Real</span>
+        <h3>リアル（ファンとの絆）</h3>
+        <p>イベントや地域コラボで、画面越しでは作れない深いつながりを生みます。地方だからこその距離感を強みに。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- メリット -->
+<section id="benefits">
+  <div class="container">
+    <div class="ben-header reveal">
+      <div class="sec-label">Benefits</div>
+      <h2 class="sec-title">M-Baseに入ると<br>できること。</h2>
+    </div>
+    <div class="ben-grid">
+      <div class="ben-card reveal">
+        <div class="ben-icon">🎯</div>
+        <div class="ben-body">
+          <h3>初期サポートが充実</h3>
+          <p>何もわからない状態からでも大丈夫。配信の始め方・プロフィールの作り方・発信の方向性まで、一緒に考えます。</p>
+        </div>
+      </div>
+      <div class="ben-card reveal d1">
+        <div class="ben-icon">📲</div>
+        <div class="ben-body">
+          <h3>配信・SNSの設計サポート</h3>
+          <p>どのプラットフォームで、どう発信するか。あなたに合った配信スタイルとSNSの使い方を一緒に設計します。</p>
+        </div>
+      </div>
+      <div class="ben-card reveal d2">
+        <div class="ben-icon">💼</div>
+        <div class="ben-body">
+          <h3>案件・出演の導線</h3>
+          <p>個人では難しい企業コラボやイベント出演の機会を、事務所として繋いでいきます。</p>
+        </div>
+      </div>
+      <div class="ben-card reveal d3">
+        <div class="ben-icon">🎪</div>
+        <div class="ben-body">
+          <h3>リアルイベントへの参加</h3>
+          <p>地域イベントや企業イベントへの出演機会を提供。画面の外でもファンと繋がれる場を作ります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- [変更④] 安心セクション — 新規追加 -->
+<section id="reassure">
+  <div class="container">
+    <div class="reassure-header reveal">
+      <div class="sec-label">For Beginners</div>
+      <h2 class="sec-title">はじめてでも、<br>安心してください。</h2>
+    </div>
+    <div class="reassure-grid">
+      <div class="reassure-card reveal">
+        <span class="reassure-card-icon">🌱</span>
+        <h3>未経験OK</h3>
+        <p>配信も、SNSも、はじめてで大丈夫。「やってみたい」という気持ちさえあれば、ゼロから一緒にスタートできます。</p>
+      </div>
+      <div class="reassure-card reveal d1">
+        <span class="reassure-card-icon">🙌</span>
+        <h3>ノルマなし</h3>
+        <p>活動の頻度や目標は、あなたのペースに合わせて設定します。無理な押しつけは一切しません。</p>
+      </div>
+      <div class="reassure-card reveal d2">
+        <span class="reassure-card-icon">💬</span>
+        <h3>いつでも相談できる</h3>
+        <p>活動中に迷ったり、悩んだりしたときに気軽に話せる環境があります。ひとりで抱え込まなくていい。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-inner">
+    <div class="story-eyebrow reveal">Our Story</div>
+    <!-- [変更⑥] エモ寄りのコピーに -->
+    <h2 class="story-h2 reveal d1">
+      地方でも、届く。<br>
+      <span class="grad">それを、証明してきた。</span>
+    </h2>
+    <p class="story-body reveal d2">
+      八戸から配信を始めたとき、<br>
+      「地方では無理」と思っていた時期がありました。<br><br>
+      でも、やり方を変えたら変わった。<br>
+      場所じゃなくて、積み上げ方の問題だと気づいた。<br><br>
+      だから、同じ思いを持つ人に伝えたい。<br>
+      地方にいることは、ハンデじゃない。<br>
+      届け方を知れば、どこからでも届けられる。<br><br>
+      M-Baseは、その「届け方」を一緒に作る場所です。
+    </p>
+    <div class="story-sig reveal d3">— 真理奈 / M-Base Founder</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-badge reveal">📢 第1期メンバー募集中（3〜5名限定）</div>
+    <h2 class="sec-title reveal d1">まずは話を<br>聞くだけでもOK。</h2>
+    <!-- [変更③] サブコピー追加 -->
+    <p class="cta-sub-heading reveal d2">応募後に無理に勧誘することは一切ありません。</p>
+    <p class="cta-note reveal d2">
+      今すぐ始める必要はありません。<br>
+      <strong>「どんな活動ができるのか」「自分に向いているのか」</strong><br>
+      まず気軽に話してみてください。<br>
+      少人数だからこそ、<strong>ひとりひとりに丁寧に向き合えます。</strong>
+    </p>
+    <!-- [変更③⑦] ボタンを大きく・目立つカラーに -->
+    <div class="cta-btns reveal d3">
+      <a href="https://forms.gle/wb2JENbA4XyJT7WS6" target="_blank" rel="noopener" class="btn-cta-main">
+        📝 今すぐ応募する（所要時間1分）
+      </a>
+    </div>
+    <!-- [変更④] 安心ポイントをCTA直下にも -->
+    <div class="cta-trust reveal d4">
+      <span class="cta-trust-item">未経験OK</span>
+      <span class="cta-trust-item">ノルマなし</span>
+      <span class="cta-trust-item">勧誘なし</span>
+    </div>
+    <p class="cta-disclaimer reveal d4">※ 面談後に入会を強制することは一切ありません。</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">M<em>-Base</em></div>
+  <!-- [変更①] プロデューサー表記 -->
+  <p class="footer-producer">真理奈プロデュース</p>
+  <p class="footer-tagline">八戸発ライバー事務所</p>
+  <div class="footer-links">
+    <a href="mailto:info@marina-official.jp">お問い合わせ</a>
+    <a href="https://x.com/marina01base18?s=21&t=mA9GMgzJ8sc3dme7douG2A" target="_blank" rel="noopener">X (Twitter)</a>
+    <a href="https://forms.gle/wb2JENbA4XyJT7WS6" target="_blank" rel="noopener">応募フォーム</a>
+  </div>
+  <p class="footer-copy">© 2025 M-Base. All rights reserved.</p>
+</footer>
+
+<script>
+/* Nav scroll */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* Reveal on scroll */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
